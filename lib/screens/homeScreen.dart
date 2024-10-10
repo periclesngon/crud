@@ -3,6 +3,7 @@ import 'dart:math'; // For flipping animation
 import 'package:crud/screens/add_profile.dart';
 import 'package:crud/screens/profile_detail_page.dart';
 import 'edit_profile_page.dart';
+import'welcomepage.dart';
 
 // Global list of profiles to simulate a database
 List<Profile> profiles = [];
@@ -46,7 +47,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
               Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => const Placeholder()));
+                      builder: (context) => const WelcomePage()));
             },
           )
         ],
@@ -66,7 +67,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => AddProfilePage())); // No profile data (new)
+                            builder: (context) => const AddProfilePage())); // No profile data (new)
                   },
                   child: const Text('Add Profile'),
                 ),
@@ -77,7 +78,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => EditProfilePage()));
+                            builder: (context) => const EditProfilePage()));
                   },
                   child: const Text('Edit Existing Profile'),
                 ),
