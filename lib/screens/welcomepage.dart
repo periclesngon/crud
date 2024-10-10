@@ -16,7 +16,9 @@ class WelcomePage extends StatelessWidget {
             decoration: const BoxDecoration(
               image: DecorationImage(
                 image: NetworkImage(
-                  'https://www.seatssoftware.com/wp-content/uploads/2023/12/SEAtS-imagery-23-14-900x600.png', // Replace with your background image URL
+                  'https://www.seatssoftware.com/wp-content/uploads/2023/12/SEAtS-imagery-23-14-900x600.png', 
+                  scale: 1.0,
+                // Replace with your background image URL
                 ),
                 fit: BoxFit.cover, // Ensures the image fits the container while maintaining aspect ratio
               ),

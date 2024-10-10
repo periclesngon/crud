@@ -93,13 +93,26 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                 Container(
                   height: MediaQuery.of(context).size.height * 0.75,
                   width: double.infinity,
-                  decoration: const BoxDecoration(
-                    image: DecorationImage(
-                      image: NetworkImage(
-                        'https://www.seatssoftware.com/wp-content/uploads/2023/12/SEAtS-imagery-23-1920-x-1080-px-1024x576.png', // Replace with your web image URL
-                      ),
-                      fit: BoxFit.cover, // Ensures the image fits the container
-                    ),
+                  child: Image.network(
+                    "https://www.seatssoftware.com/wp-content/uploads/2023/12/SEAtS-imagery-23-14-900x600.png",
+                    scale: 1.0,
+                    loadingBuilder: (BuildContext context, Widget child, ImageChunkEvent? loadingProgress) {
+                      if (loadingProgress == null) {
+                        return child;
+                      } else {
+                        return Center(
+                          child: CircularProgressIndicator(
+                            value: loadingProgress.expectedTotalBytes != null
+                                ? loadingProgress.cumulativeBytesLoaded / (loadingProgress.expectedTotalBytes ?? 1)
+                                : null,
+                          ),
+                        );
+                      }
+                    },
+                    errorBuilder: (BuildContext context, Object error, StackTrace? stackTrace) {
+                      return Icon(Icons.error);
+                    },
+                    fit: BoxFit.cover, // Ensures the image fits the container
                   ),
                 ),
 
