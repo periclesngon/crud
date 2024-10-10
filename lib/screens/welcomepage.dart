@@ -14,7 +14,7 @@ Container(
   height: MediaQuery.of(context).size.height * 0.75,
   width: MediaQuery.of(context).size.width,
   child: Image.network(
-    'https://www.seatssoftware.com/wp-content/uploads/2023/12/SEAtS-imagery-23-14-900x600.png',
+    'https://media.istockphoto.com/id/1365606637/photo/shot-of-a-young-businesswoman-using-a-digital-tablet-while-at-work.jpg?s=612x612&w=0&k=20&c=KUjVloBUXtcZzNjGyyiRFlplVuuPE6Tap3OL6h_xI5k=',
     fit: BoxFit.cover,
     loadingBuilder: (BuildContext context, Widget child, ImageChunkEvent? loadingProgress) {
       if (loadingProgress == null) {

@@ -94,7 +94,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
   height: MediaQuery.of(context).size.height * 0.75,
   width: double.infinity,
   child: Image.network(
-    "https://www.seatssoftware.com/wp-content/uploads/2023/12/SEAtS-imagery-23-14-900x600.png",
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnkxfJirB8PCdExcEmRAxbnsjpz22v-c6d-w&s",
     scale: 1.0,
     loadingBuilder: (BuildContext context, Widget child, ImageChunkEvent? loadingProgress) {
       if (loadingProgress == null) {
