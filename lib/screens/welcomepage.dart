@@ -9,36 +9,35 @@ class WelcomePage extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: [
-          // Container with background image, covering 3/4 of the screen
-Container(
-  height: MediaQuery.of(context).size.height * 0.75,
-  width: MediaQuery.of(context).size.width,
-  child: Image.network(
-    'https://media.istockphoto.com/id/1365606637/photo/shot-of-a-young-businesswoman-using-a-digital-tablet-while-at-work.jpg?s=612x612&w=0&k=20&c=KUjVloBUXtcZzNjGyyiRFlplVuuPE6Tap3OL6h_xI5k=',
-    fit: BoxFit.cover,
-    loadingBuilder: (BuildContext context, Widget child, ImageChunkEvent? loadingProgress) {
-      if (loadingProgress == null) {
-        return child;
-      } else {
-        return Center(
-          child: CircularProgressIndicator(
-            value: loadingProgress.expectedTotalBytes != null
-                ? loadingProgress.cumulativeBytesLoaded / (loadingProgress.expectedTotalBytes ?? 1)
-                : null,
+          // Expanded container with background image to cover available space
+          Expanded(
+            child: Image.network(
+              'https://static.vecteezy.com/system/resources/previews/027/186/781/large_2x/happy-black-female-executive-working-on-laptop-in-contemporary-office-and-smiling-at-camera-photo.jpg',
+              fit: BoxFit.cover,
+              width: MediaQuery.of(context).size.width, // Ensures it fits the full width
+              loadingBuilder: (BuildContext context, Widget child, ImageChunkEvent? loadingProgress) {
+                if (loadingProgress == null) {
+                  return child;
+                } else {
+                  return Center(
+                    child: CircularProgressIndicator(
+                      value: loadingProgress.expectedTotalBytes != null
+                          ? loadingProgress.cumulativeBytesLoaded / (loadingProgress.expectedTotalBytes ?? 1)
+                          : null,
+                    ),
+                  );
+                }
+              },
+              errorBuilder: (BuildContext context, Object error, StackTrace? stackTrace) {
+                return const Center(
+                  child: Text(
+                    'Image failed to load',
+                    style: TextStyle(color: Colors.red),
+                  ),
+                );
+              },
+            ),
           ),
-        );
-      }
-    },
-    errorBuilder: (BuildContext context, Object error, StackTrace? stackTrace) {
-      return const Center(
-        child: Text(
-          'Image failed to load',
-          style: TextStyle(color: Colors.red),
-        ),
-      );
-    },
-  ),
-),
 
           // Welcome text placed under the image
           const Padding(
@@ -55,25 +54,28 @@ Container(
           ),
 
           // Continue Button
-          ElevatedButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const HomeScreen(), // Replace with your HomeScreen widget
+          Padding(
+            padding: const EdgeInsets.only(bottom: 20), // Add padding for spacing
+            child: ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const HomeScreen(), // Replace with your HomeScreen widget
+                  ),
+                );
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color.fromARGB(255, 62, 134, 193),
+                padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 16),
+              ),
+              child: const Text(
+                'Continue',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
                 ),
-              );
-            },
-            style: ElevatedButton.styleFrom(
-              backgroundColor: const Color.fromARGB(255, 62, 134, 193),
-              padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 16),
-            ),
-            child: const Text(
-              'Continue',
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
               ),
             ),
           ),

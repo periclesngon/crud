@@ -89,37 +89,36 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
           Expanded(
             child: Column(
               children: [
-                // Container with web image taking 3/4 of the available space
-               Container(
-  height: MediaQuery.of(context).size.height * 0.75,
-  width: double.infinity,
-  child: Image.network(
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnkxfJirB8PCdExcEmRAxbnsjpz22v-c6d-w&s",
-    scale: 1.0,
-    loadingBuilder: (BuildContext context, Widget child, ImageChunkEvent? loadingProgress) {
-      if (loadingProgress == null) {
-        return child;
-      } else {
-        return Center(
-          child: CircularProgressIndicator(
-            value: loadingProgress.expectedTotalBytes != null
-                ? loadingProgress.cumulativeBytesLoaded / (loadingProgress.expectedTotalBytes ?? 1)
-                : null,
-          ),
-        );
-      }
-    },
-    errorBuilder: (BuildContext context, Object error, StackTrace? stackTrace) {
-      return const Center(
-        child: Text(
-          'Image failed to load',
-          style: TextStyle(color: Colors.red),
-        ),
-      );
-    },
-    fit: BoxFit.cover,
-  ),
-),
+                // Expanded widget with image to fit the available space
+                Expanded(
+                  child: Image.network(
+                    "https://as1.ftcdn.net/v2/jpg/05/44/05/68/1000_F_544056854_nEMhWcVpycc2UkWHT28FwsFYZszoEkeW.jpg",
+                    loadingBuilder: (BuildContext context, Widget child, ImageChunkEvent? loadingProgress) {
+                      if (loadingProgress == null) {
+                        return child;
+                      } else {
+                        return Center(
+                          child: CircularProgressIndicator(
+                            value: loadingProgress.expectedTotalBytes != null
+                                ? loadingProgress.cumulativeBytesLoaded / (loadingProgress.expectedTotalBytes ?? 1)
+                                : null,
+                          ),
+                        );
+                      }
+                    },
+                    errorBuilder: (BuildContext context, Object error, StackTrace? stackTrace) {
+                      return const Center(
+                        child: Text(
+                          'Image failed to load',
+                          style: TextStyle(color: Colors.red),
+                        ),
+                      );
+                    },
+                    fit: BoxFit.cover,
+                    width: double.infinity,
+                    height: MediaQuery.of(context).size.height * 0.75,
+                  ),
+                ),
 
                 // Title Text positioned under the image
                 const Padding(
