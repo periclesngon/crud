@@ -149,7 +149,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                           borderRadius: BorderRadius.circular(15),
                         ),
                         child: const Text(
-                          'Welcome',
+                          'We Thank You for Choosing our Site',
                           style: TextStyle(
                             fontSize: 24,
                             fontWeight: FontWeight.bold,
