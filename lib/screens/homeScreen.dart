@@ -90,31 +90,36 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
             child: Column(
               children: [
                 // Container with web image taking 3/4 of the available space
-                Container(
-                  height: MediaQuery.of(context).size.height * 0.75,
-                  width: double.infinity,
-                  child: Image.network(
-                    "https://www.seatssoftware.com/wp-content/uploads/2023/12/SEAtS-imagery-23-14-900x600.png",
-                    scale: 1.0,
-                    loadingBuilder: (BuildContext context, Widget child, ImageChunkEvent? loadingProgress) {
-                      if (loadingProgress == null) {
-                        return child;
-                      } else {
-                        return Center(
-                          child: CircularProgressIndicator(
-                            value: loadingProgress.expectedTotalBytes != null
-                                ? loadingProgress.cumulativeBytesLoaded / (loadingProgress.expectedTotalBytes ?? 1)
-                                : null,
-                          ),
-                        );
-                      }
-                    },
-                    errorBuilder: (BuildContext context, Object error, StackTrace? stackTrace) {
-                      return Icon(Icons.error);
-                    },
-                    fit: BoxFit.cover, // Ensures the image fits the container
-                  ),
-                ),
+               Container(
+  height: MediaQuery.of(context).size.height * 0.75,
+  width: double.infinity,
+  child: Image.network(
+    "https://www.seatssoftware.com/wp-content/uploads/2023/12/SEAtS-imagery-23-14-900x600.png",
+    scale: 1.0,
+    loadingBuilder: (BuildContext context, Widget child, ImageChunkEvent? loadingProgress) {
+      if (loadingProgress == null) {
+        return child;
+      } else {
+        return Center(
+          child: CircularProgressIndicator(
+            value: loadingProgress.expectedTotalBytes != null
+                ? loadingProgress.cumulativeBytesLoaded / (loadingProgress.expectedTotalBytes ?? 1)
+                : null,
+          ),
+        );
+      }
+    },
+    errorBuilder: (BuildContext context, Object error, StackTrace? stackTrace) {
+      return const Center(
+        child: Text(
+          'Image failed to load',
+          style: TextStyle(color: Colors.red),
+        ),
+      );
+    },
+    fit: BoxFit.cover,
+  ),
+),
 
                 // Title Text positioned under the image
                 const Padding(
